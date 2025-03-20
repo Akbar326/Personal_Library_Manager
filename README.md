@@ -14,24 +14,32 @@ A simple **command-line Library Management System** built with Python. It allows
 ---
 
 ## 🛠️ Installation  
-1. **Clone the repository:**  
+### **Clone the repository:**  
 ```bash
-git clone https://github.com/your-username/library-management-system.git
+git clone https://github.com/your-username/library-management-system.git  
+```
 
-Navigate to the project folder:
+### **Navigate to the project folder:**  
 ```bash
-cd library-management-system
+cd library-management-system  
+```
 
-Install dependencies:
+### **Install dependencies:**  
 ```bash
-pip install colorama
+pip install colorama  
+```
 
-▶️ Usage
-Run the program:
+---
+
+## ▶️ Usage  
+### **Run the program:**  
 ```bash
-python library.py
+python library.py  
+```
 
+---
 
-📝 Data Storage
-All data is stored in library.txt in JSON format.
-The data persists even after closing the program.
+## 📝 Data Storage  
+- All data is stored in **library.txt** in **JSON format**.  
+- The data persists even after closing the program.  
+
