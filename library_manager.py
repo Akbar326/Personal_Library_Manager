@@ -2,37 +2,43 @@ import json
 import os
 from colorama import init, Fore, Style
 
+# Initialize colorama for colored terminal output
 init()
 
 data_file = 'library.txt'
 
+# Function to load the library data from a file
 def load_library():
     if os.path.exists(data_file):
         with open(data_file, 'r') as file:
             return json.load(file)
     else:
         return []
-    
+
+# Function to save the library data to a file
 def save_library(library):
     with open(data_file, 'w') as file:
         json.dump(library, file)
 
+# Function to add a new book to the library
 def add_book(library):
     print("\n" + Fore.CYAN + "=== Add a Book ===" + Style.RESET_ALL)
     title = input("Enter the book title: ")
     author = input("Enter the author: ")
-    
+
+    # Validate publication year input
     while True:
         try:
             year = int(input("Enter the publication year: "))
             break
         except ValueError:
             print(Fore.RED + "Please enter a valid year (number)." + Style.RESET_ALL)
-    
+
     genre = input("Enter the genre: ")
     read_input = input("Have you read this book? (yes/no): ").lower()
     read = read_input == "yes"
 
+    # Create a new book dictionary
     new_book = {
         'title': title,
         'author': author,
@@ -40,30 +46,37 @@ def add_book(library):
         'genre': genre,
         'read': read
     }
+    
+    # Add book to the library
     library.append(new_book)
     save_library(library)
     print(Fore.GREEN + "Book added successfully!" + Style.RESET_ALL)
 
+# Function to remove a book by title
 def remove_book(library):
     print("\n" + Fore.CYAN + "=== Remove a Book ===" + Style.RESET_ALL)
     title = input("Enter the title of the book to remove: ")
     initial_length = len(library)
+
+    # Remove book if title matches
     library = [book for book in library if book['title'].lower() != title.lower()]
     if len(library) < initial_length:
         save_library(library)
         print(Fore.GREEN + "Book removed successfully!" + Style.RESET_ALL)
     else:
         print(Fore.RED + f"Book '{title}' not found!" + Style.RESET_ALL)
+
     return library
 
+# Function to search for a book by title or author
 def search_library(library):
     print("\n" + Fore.CYAN + "=== Search for a Book ===" + Style.RESET_ALL)
     print("Search by:")
     print("1. Title")
     print("2. Author")
-    
+
     search_choice = input("Enter your choice: ")
-    
+
     if search_choice == "1":
         search_by = "title"
     elif search_choice == "2":
@@ -71,9 +84,10 @@ def search_library(library):
     else:
         print(Fore.RED + "Invalid choice." + Style.RESET_ALL)
         return
-    
+
     search_term = input(f"Enter the {search_by}: ").lower()
 
+    # Find matching books
     results = [book for book in library if search_term in book[search_by].lower()]
 
     if results:
@@ -84,6 +98,7 @@ def search_library(library):
     else:
         print(Fore.RED + f"No books found matching '{search_term}' in {search_by} field" + Style.RESET_ALL)
 
+# Function to display all books
 def display_all_books(library):
     print("\n" + Fore.CYAN + "=== Your Library ===" + Style.RESET_ALL)
     if library:
@@ -93,6 +108,7 @@ def display_all_books(library):
     else:
         print(Fore.YELLOW + "Library is empty!" + Style.RESET_ALL)
 
+# Function to display statistics
 def display_statistics(library):
     print("\n" + Fore.CYAN + "=== Library Statistics ===" + Style.RESET_ALL)
     total_books = len(library)
@@ -102,6 +118,7 @@ def display_statistics(library):
     print(f"Total books: {total_books}")
     print(f"Percentage read: {percentage_read:.1f}%")
 
+# Function to display the main menu
 def display_menu():
     print("\n" + Fore.CYAN + "Menu" + Style.RESET_ALL)
     print("1. Add a book")
@@ -111,17 +128,18 @@ def display_menu():
     print("5. Display statistics")
     print("6. Exit")
 
+# Main function to run the program
 def main():
     library = load_library()
-    
+
     print(Fore.YELLOW + "\n===================================")
     print("  Welcome to Personal Library Manager")
     print("===================================" + Style.RESET_ALL)
-    
+
     while True:
         display_menu()
         choice = input("Enter your choice: ")
-        
+
         if choice == "1":
             add_book(library)
         elif choice == "2":
@@ -139,5 +157,6 @@ def main():
         else:
             print(Fore.RED + "Invalid choice. Please try again." + Style.RESET_ALL)
 
+# Entry point for the program
 if __name__ == '__main__':
     main()
