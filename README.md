@@ -1,2 +1,45 @@
-# Personal_Library_Manager
- Library Management System built in Python using json and colorama libraries. It is a command-line application that allows users to add, remove, search, display, and track books in a personal library. Data is stored in a library.txt file for persistence. The system also provides reading statistics and user-friendly feedback using color codes.
+# 📚 Library Management System  
+A simple **command-line Library Management System** built with Python. It allows users to manage a personal library by adding, removing, searching, displaying books, and tracking reading status.
+
+---
+
+## 🚀 Features  
+✅ Add a book with details like **title**, **author**, **year**, **genre**, and **read status**  
+✅ Remove books by title  
+✅ Search books by **title** or **author**  
+✅ Display all books with details and status  
+✅ Show library statistics (**total books** and **percentage read**)  
+✅ Data persistence using JSON files  
+
+---
+
+## 🛠️ Installation  
+### **Clone the repository:**  
+```bash
+git clone https://github.com/your-username/library-management-system.git  
+```
+
+### **Navigate to the project folder:**  
+```bash
+cd library-management-system  
+```
+
+### **Install dependencies:**  
+```bash
+pip install colorama  
+```
+
+---
+
+## ▶️ Usage  
+### **Run the program:**  
+```bash
+python library.py  
+```
+
+---
+
+## 📝 Data Storage  
+- All data is stored in **library.txt** in **JSON format**.  
+- The data persists even after closing the program.  
+
